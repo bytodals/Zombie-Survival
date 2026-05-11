@@ -21,7 +21,7 @@ These entities are strongly connected through relationships (including junction 
 
 - participant_id (PK)
 - first_name, last_name
-- enrollment_date (DATE)
+- join_date (DATE)
 - survival_skill_level (INT 1-100)
 - status
 
@@ -69,9 +69,41 @@ Junction tables are used for all many-to-many relationships to avoid redundancy.
 
 ## Technology & Architecture Decisions
 
-- **Framework**: Express.js
-- **Language**: TypeScript + ESM
+- **Backend Framework**: Express.js
+- **Frontend Framework**: React + Vite
+- **Language**: TypeScript (backend + frontend)
 - **Database**: MySQL (existing database from previous course)
 - **Data Access**: mysql2/promise with async/await
-- **Architecture**: Layered (Routes - Database) with clear separation of concerns
+- **Architecture**: Fullstack layered architecture
+  - Backend: Routes → Controllers → Services → Database
+  - Frontend: Pages → API Client → Backend REST API
 - **Extra features**: Graceful shutdown, centralized error handling, health check endpoint
+
+## Frontend Design
+
+The project now includes a dedicated frontend (`zombie-survival-camp-web`) that presents and manages all core entities through a user-friendly interface.
+
+### Frontend Pages
+
+- **CoursesPage**: Displays and manages courses with dates and difficulty.
+- **ParticipantsPage**: Displays and manages participants, including status and skill level.
+- **WeaponsPage**: Displays and manages weapon inventory and weapon details.
+- **ZombieBehaviorsPage**: Displays and manages zombie behavior data and threat information.
+
+### Frontend Goals
+
+- Provide a clear visual overview of all entities in the system.
+- Make CRUD operations easier and more intuitive than manual API usage.
+- Separate UI logic from API logic using dedicated client modules in `src/api/`.
+- Reuse shared TypeScript types (`src/types/api.ts`) for consistency between backend and frontend.
+
+## API and Frontend Integration
+
+The frontend communicates with the backend through REST endpoints, with separate API client files for each entity:
+
+- `courses.ts`
+- `participants.ts`
+- `weapons.ts`
+- `zombieBehaviors.ts`
+
+This structure improves maintainability and makes it easier to extend the system with additional pages and features.
