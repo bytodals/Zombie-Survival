@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getWeapons } from "../api/weapons";
-import type { Weapon } from "../types/api";
+import type { Weapon } from "../../../shared/types/api";
 
 export default function WeaponsPage() {
   const [rows, setRows] = useState<Weapon[]>([]);
@@ -19,16 +19,15 @@ export default function WeaponsPage() {
 
   return (
     <div>
-      <h1>Weapons</h1>
+      <h1>Weapons ({rows.length})</h1>
       <table>
         <thead>
           <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Type</th>
             <th>Damage</th>
-            <th>In stock</th>
-            <th>Value</th>
+            <th>Quantity</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
@@ -36,10 +35,9 @@ export default function WeaponsPage() {
             <tr key={w.weapon_id}>
               <td>{w.weapon_id}</td>
               <td>{w.name}</td>
-              <td>{w.type}</td>
               <td>{w.damage}</td>
-              <td>{w.quantity_in_stock}</td>
-              <td>{w.value}</td>
+              <td>{w.quantity}</td>
+              <td>{w.description}</td>
             </tr>
           ))}
         </tbody>

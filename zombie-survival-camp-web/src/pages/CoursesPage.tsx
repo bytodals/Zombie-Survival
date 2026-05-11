@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCourses } from "../api/courses";
-import type { Course } from "../types/api";
+import type { Course } from "../../../shared/types/api";
 
 export default function CoursesPage() {
   const [rows, setRows] = useState<Course[]>([]);
@@ -19,25 +19,25 @@ export default function CoursesPage() {
 
   return (
     <div>
-      <h1>Courses</h1>
+      <h1>Courses ({rows.length})</h1>
       <table>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Course name</th>
-            <th>Start date</th>
-            <th>End date</th>
-            <th>Difficulty</th>
+            <th>Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((c) => (
             <tr key={c.course_id}>
               <td>{c.course_id}</td>
-              <td>{c.course_name}</td>
-              <td>{c.start_date}</td>
-              <td>{c.end_date}</td>
-              <td>{c.difficulty_level}</td>
+              <td>{c.name}</td>
+              <td>{new Date(c.start_date).toLocaleDateString()}</td>
+              <td>{new Date(c.end_date).toLocaleDateString()}</td>
+              <td>{c.description}</td>
             </tr>
           ))}
         </tbody>

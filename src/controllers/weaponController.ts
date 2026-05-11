@@ -1,22 +1,25 @@
-import { RequestHandler } from "express";
-import { QueryResult } from "mysql2";
-import * as service from "../services/weaponService.js";
+import { Request, Response, NextFunction } from "express";
+import * as service from "../services/weaponService";
+import { sendSuccess } from "../utils/responseHandler";
 
-export const getAll: RequestHandler = async (req, res, next) => {
+export const getAll = async (
+  _req: Request,
+  res: Response,
+  next: NextFunction
+ ) => {
   try {
     const data = await service.getAllWeapons();
-
-    res.json({
-      success: true,
-      count: Array.isArray(data) ? data.length : 0,
-      data
-    });
+    sendSuccess(res, data);
   } catch (err) {
     next(err);
   }
 };
 
-export const get: RequestHandler<{ id: string }> = async (req, res, next) => {
+export const get = async (
+  req: Request<{ id: string }>,
+  res: Response,
+  next: NextFunction
+ ) => {
   try {
     const data = await service.getWeaponById(req.params.id);
 
@@ -27,10 +30,7 @@ export const get: RequestHandler<{ id: string }> = async (req, res, next) => {
       });
     }
 
-    res.json({
-      success: true,
-      data: data[0]
-    });
+    sendSuccess(res, data[0]);
   } catch (err) {
     next(err);
   }

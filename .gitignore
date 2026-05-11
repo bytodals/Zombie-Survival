@@ -12,6 +12,15 @@ yarn-error.log*
 # Build output
 dist/
 build/
+*.js
+*.d.ts
+*.js.map
+*.d.ts.map
+
+# Source files - ignore compiled output in shared/
+shared/**/*.js
+shared/**/*.d.ts
+shared/**/*.map
 
 # Logs
 *.log
@@ -28,6 +37,8 @@ pids
 .idea/
 *.swp
 *.swo
+*.bak
+*~
 *~
 
 # OS generated files

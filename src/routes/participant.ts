@@ -1,5 +1,5 @@
 import { Router, RequestHandler } from "express";
-import * as controller from "../controllers/participantController.js";
+import * as controller from "../controllers/participantController";
 
 const router = Router();
 

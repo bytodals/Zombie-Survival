@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getParticipants } from "../api/participants";
-import type { Participant } from "../types/api";
+import type { Participant } from "../../../shared/types/api";
 
 export default function ParticipantsPage() {
   const [rows, setRows] = useState<Participant[]>([]);
@@ -19,27 +19,25 @@ export default function ParticipantsPage() {
 
   return (
     <div>
-      <h1>Participants</h1>
+      <h1>Participants ({rows.length})</h1>
       <table>
         <thead>
           <tr>
             <th>ID</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Enrollment date</th>
-            <th>Skill level</th>
-            <th>Status</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Join Date</th>
+            <th>Skill Level</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((p) => (
             <tr key={p.participant_id}>
               <td>{p.participant_id}</td>
-              <td>{p.first_name}</td>
-              <td>{p.last_name}</td>
-              <td>{p.enrollment_date}</td>
-              <td>{p.survival_skill_level}</td>
-              <td>{p.status}</td>
+              <td>{p.name}</td>
+              <td>{p.age}</td>
+              <td>{new Date(p.join_date).toLocaleDateString()}</td>
+              <td>{p.skill_level}/10</td>
             </tr>
           ))}
         </tbody>

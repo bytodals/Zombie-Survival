@@ -1,13 +1,20 @@
 import express from "express";
+import cors from "cors";
 
-import participantRouter from "./routes/participant.js";
-import zombieBehaviorRouter from "./routes/zombieBehavior.js";
-import courseRouter from "./routes/course.js";
-import weaponRouter from "./routes/weapon.js";
-import { notFoundMiddleware } from "./middleware/notFoundMiddleware.js";
-import { errorMiddleware } from "./middleware/errorMiddleware.js";
+import participantRouter from "./routes/participant";
+import zombieBehaviorRouter from "./routes/zombieBehavior";
+import courseRouter from "./routes/course";
+import weaponRouter from "./routes/weapon";
+import { notFoundMiddleware } from "./middleware/notFoundMiddleware";
+import { errorMiddleware } from "./middleware/errorMiddleware";
 
 const app = express();
+
+// CORS middleware - allow all localhost origins
+app.use(cors({
+  origin: "*",
+  credentials: false
+}));
 
 app.use(express.json());
 

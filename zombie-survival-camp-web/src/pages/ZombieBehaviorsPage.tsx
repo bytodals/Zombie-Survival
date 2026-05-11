@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getZombieBehaviors } from "../api/zombieBehaviors";
-import type { ZombieBehavior } from "../types/api";
+import type { ZombieBehavior } from "../../../shared/types/api";
 
 export default function ZombieBehaviorsPage() {
   const [rows, setRows] = useState<ZombieBehavior[]>([]);
@@ -19,14 +19,13 @@ export default function ZombieBehaviorsPage() {
 
   return (
     <div>
-      <h1>Zombie Behaviors</h1>
+      <h1>Zombie Behaviors ({rows.length})</h1>
       <table>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Behavior type</th>
-            <th>Threat level</th>
-            <th>Speed</th>
+            <th>Name</th>
+            <th>Danger Level</th>
             <th>Description</th>
           </tr>
         </thead>
@@ -34,9 +33,8 @@ export default function ZombieBehaviorsPage() {
           {rows.map((z) => (
             <tr key={z.behavior_id}>
               <td>{z.behavior_id}</td>
-              <td>{z.behavior_type}</td>
-              <td>{z.threat_level}</td>
-              <td>{z.speed}</td>
+              <td>{z.name}</td>
+              <td>{z.danger_level}/10</td>
               <td>{z.description}</td>
             </tr>
           ))}

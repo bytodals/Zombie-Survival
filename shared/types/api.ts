@@ -6,34 +6,31 @@ export type ApiListResponse<T> = {
 
 export type Participant = {
   participant_id: number;
-  first_name: string;
-  last_name: string;
-  enrollment_date: string;
-  survival_skill_level: number;
-  status: string;
+  name: string;
+  age: number;
+  join_date: string;
+  skill_level: number;
 };
 
 export type Course = {
   course_id: number;
-  course_name: string;
+  name: string;
   start_date: string;
   end_date: string;
-  difficulty_level: string;
+  description: string;
 };
 
 export type Weapon = {
   weapon_id: number;
   name: string;
-  type: string;
   damage: number;
-  quantity_in_stock: number;
-  value: number;
+  quantity: number;
+  description: string;
 };
 
 export type ZombieBehavior = {
   behavior_id: number;
-  behavior_type: string;
-  threat_level: number;
-  speed: string;
+  name: string;
+  danger_level: number;
   description: string;
 };

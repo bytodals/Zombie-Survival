@@ -33,7 +33,7 @@ These entities are strongly connected through relationships (including junction 
 - end_date (DATE)
 - difficulty_level
 
-**Weapons**
+## Weapons
 
 - weapon_id (PK)
 - name
@@ -42,7 +42,7 @@ These entities are strongly connected through relationships (including junction 
 - quantity_in_stock (INT)
 - value (DECIMAL)
 
-**Zombie Behaviors**
+## Zombie Behaviors
 
 - behavior_id (PK)
 - behavior_type

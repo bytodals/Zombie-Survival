@@ -1,17 +1,15 @@
-import { QueryResult } from "mysql2";
-import * as service from "../services/zombieBehaviorService.js";
+import { Request, Response, NextFunction } from "express";
+import * as service from "../services/zombieBehaviorService";
+import { sendSuccess } from "../utils/responseHandler";
 
-export const getAll = async (req: any, res: { json: (arg0: { success: boolean; count: any; data: QueryResult; }) => void; }, next: (arg0: unknown) => void) => {
+export const getAll = async (
+  _req: Request,
+  res: Response,
+  next: NextFunction
+ ) => {
   try {
     const data = await service.getAllZombieBehaviors();
-
-    const count = Array.isArray(data) ? data.length : 0;
-
-    res.json({
-      success: true,
-      count,
-      data
-    });
+    sendSuccess(res, data);
   } catch (err) {
     next(err);
   }
