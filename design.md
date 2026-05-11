@@ -1,4 +1,4 @@
-# Slutprojekt Backend F25 - Design Document
+# Final Project F25D Backend Course - Design Document
 
 ## Knowledge Domain
 
