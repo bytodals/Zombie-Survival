@@ -6,6 +6,7 @@ import zombieBehaviorRouter from "./routes/zombieBehavior";
 import courseRouter from "./routes/course";
 import weaponRouter from "./routes/weapon";
 import simulatorRouter from "./routes/simulator";
+import { getOverview as getSimulatorOverview } from "./controllers/simulatorController";
 import { notFoundMiddleware } from "./middleware/notFoundMiddleware";
 import { errorMiddleware } from "./middleware/errorMiddleware";
 
@@ -25,6 +26,7 @@ app.use("/zombie-behavior", zombieBehaviorRouter);
 app.use("/course", courseRouter);
 app.use("/weapon", weaponRouter);
 app.use("/simulator", simulatorRouter);
+app.get("/simulator/overview", getSimulatorOverview);
 
 // fallback
 app.use(notFoundMiddleware as express.RequestHandler);

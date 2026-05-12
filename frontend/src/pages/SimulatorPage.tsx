@@ -159,9 +159,9 @@ export default function SimulatorPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Simulator</h1>
+          <h1 className="text-2xl font-bold text-foreground">All Data</h1>
           <p className="text-muted-foreground">
-            See all data at once, including the many-to-many junction relationships that power the simulator.
+            Complete view of all entities and their many-to-many relationships.
           </p>
         </div>
         <div className="rounded-lg border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary">

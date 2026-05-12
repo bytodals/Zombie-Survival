@@ -8,7 +8,7 @@ const navItems = [
   { to: "/courses", icon: BookOpen, label: "Training" },
   { to: "/weapons", icon: Sword, label: "Arsenal" },
   { to: "/zombie-behaviors", icon: Skull, label: "Threats" },
-  { to: "/simulator", icon: Database, label: "Simulator" },
+  { to: "/simulator", icon: Database, label: "All Data" },
 ];
 
 export default function Sidebar() {
