@@ -1,6 +1,7 @@
 import app from "./app";
 import pool from "./config/database";
 import dotenv from "dotenv";
+import { config as dotenvConfig } from "dotenv";
 
 dotenv.config();
 
