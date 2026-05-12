@@ -1,0 +1,12 @@
+@import "./index.css";
+
+/* App-specific overrides can go here */
+
+html, body, #root {
+  height: 100%;
+}
+
+.app-root {
+  min-height: 100vh;
+}
+/* Tailwind handles all styling */

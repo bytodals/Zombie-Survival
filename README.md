@@ -1,77 +1,58 @@
-# Zombie Survival Camp API
+# Zombie Survival Camp
 
-Backend REST API for managing a post-apocalyptic zombie survival training camp.
+Zombie Survival Camp is a full-stack TypeScript app for managing survivors, training courses, weapons, and zombie threat intelligence.
 
-## Knowledge Domain
+## Project layout
 
-Manages participants, courses, weapons, and simulated zombie behaviors for a survival training environment.
+- `frontend/` — React + Vite UI
+- `backend/` — Express + MySQL API
+- `backend/shared/` — shared TypeScript API types used by both sides
 
-## Features
+## What it does
 
-- RESTful JSON API
-- MySQL persistence
-- Layered architecture (controllers, services, repositories)
-- Graceful shutdown and error handling
-- Written in TypeScript (ESM)
+- REST JSON API for participants, courses, weapons, and zombie behaviors
+- Dashboard UI with reusable cards, tables, badges, and stats
+- Graceful fallback when the database is unavailable, so the UI still loads without crashing
+- Centralized backend error handling and health check endpoint
 
-## Tech Stack
+## Getting started
 
-- Node.js + Express
-- TypeScript
-- MySQL (mysql2/promise)
+### Backend
 
-## Installation & Setup
+```bash
+cd backend
+npm install
+npm run dev
+```
 
-1. Clone the repository
+Example `backend/.env`:
 
-   ```bash
-   git clone <repo-url>
-   cd zombie-survival-camp-api
-   ```
+```env
+PORT=3000
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=your_password
+DB_DATABASE=zombie_survival_camp
+VITE_API_BASE_URL=http://localhost:3000/
+```
 
-2. Install dependencies
+### Frontend
 
-   ```bash
-   npm install
-   ```
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-3. Create a .env file (example)
+The frontend reads `VITE_API_BASE_URL` and calls these endpoints:
 
-   ```env
-   PORT=3000
-   DB_HOST=localhost
-   DB_PORT=3306
-   DB_USER=root
-   DB_PASSWORD=your_password
-   DB_DATABASE=zombie_camp
-   ```
+- `GET /participant`
+- `GET /course`
+- `GET /weapon`
+- `GET /zombie-behavior`
 
-4. Build and run
+## Notes
 
-   ```bash
-   npm run build
-   npm start
-   ```
-
-5. Development
-
-   ```bash
-   npm run dev
-   ```
-
-## API
-
-The server exposes REST endpoints (JSON). Example:
-
-- GET /health
-- GET /participants
-- POST /participants
-- GET /courses
-
-Refer to the source code or OpenAPI spec (if included) for full routes and payloads.
-
-## Contributing
-
-1. Fork the repo
-2. Create a feature branch
-3. Submit a PR with tests and a clear description
+- The backend currently falls back to empty responses if MySQL credentials are placeholders or the database is unavailable.
+- Shared API types live in `backend/shared/types/api.ts` and are imported from both apps.

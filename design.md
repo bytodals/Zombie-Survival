@@ -77,11 +77,12 @@ Junction tables are used for all many-to-many relationships to avoid redundancy.
 - **Architecture**: Fullstack layered architecture
   - Backend: Routes → Controllers → Services → Database
   - Frontend: Pages → API Client → Backend REST API
-- **Extra features**: Graceful shutdown, centralized error handling, health check endpoint
+- **Shared Code**: API types live in `backend/shared/types/api.ts` and are reused by both apps
+- **Extra features**: Graceful shutdown, centralized error handling, health check endpoint, and graceful empty-state fallback when the database is unavailable
 
 ## Frontend Design
 
-The project now includes a dedicated frontend (`zombie-survival-camp-web`) that presents and manages all core entities through a user-friendly interface.
+The project now includes a dedicated frontend (`frontend/`) that presents and manages all core entities through a user-friendly interface.
 
 ### Frontend Pages
 
@@ -95,7 +96,7 @@ The project now includes a dedicated frontend (`zombie-survival-camp-web`) that 
 - Provide a clear visual overview of all entities in the system.
 - Make CRUD operations easier and more intuitive than manual API usage.
 - Separate UI logic from API logic using dedicated client modules in `src/api/`.
-- Reuse shared TypeScript types (`src/types/api.ts`) for consistency between backend and frontend.
+- Reuse shared TypeScript types (`backend/shared/types/api.ts`) for consistency between backend and frontend.
 
 ## API and Frontend Integration
 
@@ -105,5 +106,17 @@ The frontend communicates with the backend through REST endpoints, with separate
 - `participants.ts`
 - `weapons.ts`
 - `zombieBehaviors.ts`
+
+## API Endpoints
+
+The current backend routes are:
+
+- `GET /health`
+- `GET /participant`
+- `GET /participant/:id`
+- `GET /course`
+- `GET /weapon`
+- `GET /weapon/:id`
+- `GET /zombie-behavior`
 
 This structure improves maintainability and makes it easier to extend the system with additional pages and features.
