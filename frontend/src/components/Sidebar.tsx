@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Users, BookOpen, Sword, Skull, LayoutDashboard, Shield, Database } from "lucide-react";
+import { Users, BookOpen, Sword, Skull, LayoutDashboard, Biohazard, Database } from "lucide-react";
 import clsx from "clsx";
 
 const navItems = [
@@ -17,10 +17,10 @@ export default function Sidebar() {
       <div className="flex h-full flex-col overflow-y-auto px-3 py-4">
         <div className="mb-8 flex items-center gap-3 px-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20">
-            <Shield className="h-6 w-6 text-primary" />
+            <Biohazard className="h-6 w-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-lg font-bold text-foreground">ZSC</h1>
+            <h1 className="text-lg font-bold text-foreground">ZOMBIE</h1>
             <p className="text-xs text-muted-foreground">Survival Camp</p>
           </div>
         </div>
@@ -46,15 +46,6 @@ export default function Sidebar() {
           ))}
         </nav>
 
-        <div className="mt-auto rounded-lg border border-border bg-secondary/50 p-4">
-          <div className="flex items-center gap-2">
-            <div className="h-2 w-2 animate-pulse rounded-full bg-primary" />
-            <span className="text-xs font-medium text-muted-foreground">System Online</span>
-          </div>
-          <p className="mt-2 text-xs text-muted-foreground">
-            Threat Level: <span className="font-semibold text-warning-amber">ELEVATED</span>
-          </p>
-        </div>
       </div>
     </aside>
   );

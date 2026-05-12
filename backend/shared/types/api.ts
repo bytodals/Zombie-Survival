@@ -63,6 +63,21 @@ export type WeaponZombieBehaviorLink = {
   behavior_name: string;
 };
 
+export type ParticipantBehaviorLink = {
+  participant_id: number;
+  behavior_id: number;
+  participant_name: string;
+  behavior_name: string;
+  training_date: string;
+};
+
+export type CourseBehaviorLink = {
+  course_id: number;
+  behavior_id: number;
+  course_name: string;
+  behavior_name: string;
+};
+
 export type SimulatorOverview = {
   participants: Participant[];
   courses: Course[];
@@ -72,4 +87,6 @@ export type SimulatorOverview = {
   courseWeapons: CourseWeaponLink[];
   courseZombieBehaviors: CourseZombieBehaviorLink[];
   weaponZombieBehaviors: WeaponZombieBehaviorLink[];
+  participantBehaviors: ParticipantBehaviorLink[];
+  courseBehaviors: CourseBehaviorLink[];
 };

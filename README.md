@@ -37,6 +37,17 @@ DB_DATABASE=zombie_survival_camp
 VITE_API_BASE_URL=http://localhost:3000/
 ```
 
+### Database schema & seeds
+
+The repo includes SQL to create the junction tables and to seed the development relationships. Run these from the project root (you will be prompted for your MySQL password):
+
+```bash
+mysql -h localhost -u root -p zombie_survival_camp < backend/schema/junction-tables.sql
+mysql -h localhost -u root -p zombie_survival_camp < backend/schema/seeds.sql
+```
+
+The seeds use `INSERT IGNORE` so they are safe to run multiple times.
+
 ### Frontend
 
 ```bash

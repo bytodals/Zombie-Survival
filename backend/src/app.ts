@@ -26,7 +26,6 @@ app.use("/zombie-behavior", zombieBehaviorRouter);
 app.use("/course", courseRouter);
 app.use("/weapon", weaponRouter);
 app.use("/simulator", simulatorRouter);
-app.get("/simulator/overview", getSimulatorOverview);
 
 // fallback
 app.use(notFoundMiddleware as express.RequestHandler);

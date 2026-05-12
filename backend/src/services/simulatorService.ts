@@ -1,9 +1,11 @@
 import pool, { dbAvailable } from "../config/database";
 import type {
   Course,
+  CourseBehaviorLink,
   CourseWeaponLink,
   CourseZombieBehaviorLink,
   Participant,
+  ParticipantBehaviorLink,
   ParticipantCourseLink,
   SimulatorOverview,
   Weapon,
@@ -19,7 +21,9 @@ const emptyOverview = (): SimulatorOverview => ({
   participantCourses: [],
   courseWeapons: [],
   courseZombieBehaviors: [],
-  weaponZombieBehaviors: []
+  weaponZombieBehaviors: [],
+  participantBehaviors: [],
+  courseBehaviors: []
 });
 
 const fetchRows = async <T>(query: string, params: any[] = []) => {
@@ -48,7 +52,7 @@ export const getSimulatorOverview = async (): Promise<SimulatorOverview> => {
     safeFetchRows<ZombieBehavior>("SELECT * FROM zombie_behavior ORDER BY behavior_id", "zombie_behavior")
   ]);
 
-  const [participantCourses, courseWeapons, courseZombieBehaviors, weaponZombieBehaviors] = await Promise.all([
+  const [participantCourses, courseWeapons, courseZombieBehaviors, weaponZombieBehaviors, participantBehaviors, courseBehaviors] = await Promise.all([
     safeFetchRows<ParticipantCourseLink>(`
       SELECT
         pc.participant_id,
@@ -92,7 +96,30 @@ export const getSimulatorOverview = async (): Promise<SimulatorOverview> => {
       INNER JOIN weapon w ON w.weapon_id = wz.weapon_id
       INNER JOIN zombie_behavior z ON z.behavior_id = wz.behavior_id
       ORDER BY wz.weapon_id, wz.behavior_id
-    `, "weapon_zombie_behavior")
+    `, "weapon_zombie_behavior"),
+    safeFetchRows<ParticipantBehaviorLink>(`
+      SELECT
+        pb.participant_id,
+        pb.behavior_id,
+        p.name AS participant_name,
+        z.name AS behavior_name,
+        pb.training_date
+      FROM participant_behavior pb
+      INNER JOIN participant p ON p.participant_id = pb.participant_id
+      INNER JOIN zombie_behavior z ON z.behavior_id = pb.behavior_id
+      ORDER BY pb.participant_id, pb.behavior_id
+    `, "participant_behavior"),
+    safeFetchRows<CourseBehaviorLink>(`
+      SELECT
+        cb.course_id,
+        cb.behavior_id,
+        c.name AS course_name,
+        z.name AS behavior_name
+      FROM course_behavior cb
+      INNER JOIN course c ON c.course_id = cb.course_id
+      INNER JOIN zombie_behavior z ON z.behavior_id = cb.behavior_id
+      ORDER BY cb.course_id, cb.behavior_id
+    `, "course_behavior")
   ]);
 
   return {
@@ -103,6 +130,8 @@ export const getSimulatorOverview = async (): Promise<SimulatorOverview> => {
     participantCourses,
     courseWeapons,
     courseZombieBehaviors,
-    weaponZombieBehaviors
+    weaponZombieBehaviors,
+    participantBehaviors,
+    courseBehaviors
   };
 };

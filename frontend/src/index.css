@@ -1,100 +1,118 @@
 @import "tailwindcss";
 
+/* stylelint-disable at-rule-no-unknown */
+
 :root {
-  --background: 220 13% 8%;
-  --foreground: 210 20% 90%;
+  /* Base colors */
+  --background: hsl(15 19% 9%);
+  --foreground: hsl(210 20% 90%);
 
-  --card: 220 15% 11%;
-  --card-foreground: 210 20% 90%;
+  --card: hsl(210 17% 9%);
+  --card-foreground: hsl(210 20% 90%);
 
-  --popover: 220 15% 11%;
-  --popover-foreground: 210 20% 90%;
+  --popover: hsl(210 17% 9%);
+  --popover-foreground: hsl(210 20% 90%);
 
-  --primary: 142 70% 45%;
-  --primary-foreground: 0 0% 100%;
+  --primary: hsl(106 54% 59%);
+  --primary-foreground: hsl(0 0% 100%);
 
-  --secondary: 220 15% 16%;
-  --secondary-foreground: 210 20% 90%;
+  --secondary: hsl(214 18% 12%);
+  --secondary-foreground: hsl(210 20% 90%);
 
-  --muted: 220 15% 16%;
-  --muted-foreground: 215 16% 55%;
+  --muted: hsl(214 18% 12%);
+  --muted-foreground: hsl(210 5% 55%);
 
-  --accent: 35 90% 50%;
-  --accent-foreground: 0 0% 100%;
+  --accent: hsl(40 100% 50%);
+  --accent-foreground: hsl(0 0% 100%);
 
-  --destructive: 0 72% 51%;
-  --destructive-foreground: 0 0% 100%;
+  --destructive: hsl(357 89% 19%);
+  --destructive-foreground: hsl(0 0% 100%);
 
-  --border: 220 13% 20%;
-  --input: 220 13% 20%;
-  --ring: 142 70% 45%;
+  --border: hsl(205 17% 14%);
+  --input: hsl(205 17% 14%);
+  --ring: hsl(106 54% 59%);
 
-  --zombie-green: 120 100% 35%;
-  --danger-red: 0 72% 51%;
-  --warning-amber: 35 90% 50%;
-  --safe-teal: 180 80% 35%;
+  /* Custom semantic colors */
+  --zombie-green: hsl(106 54% 59%);
+  --danger-red: hsl(357 89% 19%);
+  --warning-amber: hsl(40 100% 50%);
+  --safe-teal: hsl(174 35% 48%);
+
+  /* Hex fallbacks */
+  --background-hex: #161111;
+  --foreground-hex: #e6eef6;
+
+  --card-hex: #11161a;
+  --card-foreground-hex: #e6eef6;
+
+  --popover-hex: #11161a;
+  --popover-foreground-hex: #e6eef6;
+
+  --primary-hex: #85cb6d;
+  --primary-foreground-hex: #ffffff;
+
+  --secondary-hex: #131820;
+  --secondary-foreground-hex: #e6eef6;
+
+  --muted-hex: #131820;
+  --muted-foreground-hex: #8c8f8f;
+
+  --accent-hex: #ffb300;
+  --accent-foreground-hex: #ffffff;
+
+  --destructive-hex: #631113;
+  --destructive-foreground-hex: #ffffff;
+
+  --border-hex: #212a30;
+  --input-hex: #212a30;
+  --ring-hex: #85cb6d;
+
+  --zombie-green-hex: #85cb6d;
+  --danger-red-hex: #631113;
+  --warning-amber-hex: #ffb300;
+  --safe-teal-hex: #4f9e97;
 }
 
-@theme inline {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-
-  --color-zombie-green: hsl(var(--zombie-green));
-  --color-danger-red: hsl(var(--danger-red));
-  --color-warning-amber: hsl(var(--warning-amber));
-  --color-safe-teal: hsl(var(--safe-teal));
-}
+/* stylelint-enable at-rule-no-unknown */
 
 * {
-  border-color: hsl(var(--border));
+  border-color: var(--border);
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
 }
 
+/* Scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--secondary));
+  background: var(--secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground));
+  background: var(--muted-foreground);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--foreground));
+  background: var(--foreground);
 }

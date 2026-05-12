@@ -25,7 +25,9 @@ const emptyOverview: SimulatorOverview = {
   participantCourses: [],
   courseWeapons: [],
   courseZombieBehaviors: [],
-  weaponZombieBehaviors: []
+  weaponZombieBehaviors: [],
+  participantBehaviors: [],
+  courseBehaviors: []
 };
 
 function SectionCard({
@@ -70,7 +72,9 @@ export default function SimulatorPage() {
       overview.participantCourses.length +
       overview.courseWeapons.length +
       overview.courseZombieBehaviors.length +
-      overview.weaponZombieBehaviors.length,
+      overview.weaponZombieBehaviors.length +
+      overview.participantBehaviors.length +
+      overview.courseBehaviors.length,
     [overview]
   );
 
@@ -151,6 +155,21 @@ export default function SimulatorPage() {
   const weaponZombieColumns = [
     { key: "weapon_id", header: "Weapon ID" },
     { key: "weapon_name", header: "Weapon" },
+    { key: "behavior_id", header: "Behavior ID" },
+    { key: "behavior_name", header: "Behavior" },
+  ];
+
+  const participantBehaviorColumns = [
+    { key: "participant_id", header: "Participant ID" },
+    { key: "participant_name", header: "Participant" },
+    { key: "behavior_id", header: "Behavior ID" },
+    { key: "behavior_name", header: "Behavior" },
+    { key: "training_date", header: "Training Date" },
+  ];
+
+  const courseBehaviorColumns = [
+    { key: "course_id", header: "Course ID" },
+    { key: "course_name", header: "Course" },
     { key: "behavior_id", header: "Behavior ID" },
     { key: "behavior_name", header: "Behavior" },
   ];
@@ -251,6 +270,24 @@ export default function SimulatorPage() {
             </CardHeader>
             <CardContent>
               <DataTable columns={weaponZombieColumns} data={overview.weaponZombieBehaviors} keyExtractor={(item) => `${item.weapon_id}-${item.behavior_id}`} emptyMessage="No weapon-zombie behavior links" />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><Link2 className="h-4 w-4 text-primary" />Participants ↔ Zombie Behaviors</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <DataTable columns={participantBehaviorColumns} data={overview.participantBehaviors} keyExtractor={(item) => `${item.participant_id}-${item.behavior_id}`} emptyMessage="No participant-zombie behavior links" />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><Link2 className="h-4 w-4 text-primary" />Courses ↔ Zombie Behaviors (Training)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <DataTable columns={courseBehaviorColumns} data={overview.courseBehaviors} keyExtractor={(item) => `${item.course_id}-${item.behavior_id}`} emptyMessage="No course-zombie behavior training links" />
             </CardContent>
           </Card>
         </div>
