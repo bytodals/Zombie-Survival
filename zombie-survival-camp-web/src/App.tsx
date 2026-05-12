@@ -1,4 +1,6 @@
-import { BrowserRouter, NavLink, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+import DashboardPage from "./pages/DashboardPage";
 import ParticipantsPage from "./pages/ParticipantsPage";
 import CoursesPage from "./pages/CoursesPage";
 import WeaponsPage from "./pages/WeaponsPage";
@@ -8,19 +10,14 @@ import "./App.css";
 export default function App() {
   return (
     <BrowserRouter>
-      <nav style={{ display: "flex", gap: 12, marginBottom: 16 }}>
-        <NavLink to="/participants">Participants</NavLink>
-        <NavLink to="/courses">Courses</NavLink>
-        <NavLink to="/weapons">Weapons</NavLink>
-        <NavLink to="/zombie-behaviors">Zombie Behaviors</NavLink>
-      </nav>
-
       <Routes>
-        <Route path="/" element={<Navigate to="/participants" replace />} />
-        <Route path="/participants" element={<ParticipantsPage />} />
-        <Route path="/courses" element={<CoursesPage />} />
-        <Route path="/weapons" element={<WeaponsPage />} />
-        <Route path="/zombie-behaviors" element={<ZombieBehaviorsPage />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/participants" element={<ParticipantsPage />} />
+          <Route path="/courses" element={<CoursesPage />} />
+          <Route path="/weapons" element={<WeaponsPage />} />
+          <Route path="/zombie-behaviors" element={<ZombieBehaviorsPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
