@@ -15,5 +15,12 @@
     "sourceMap": true
   },
   "include": ["src/**/*", "shared/**/*"],
-  "exclude": ["vite.config.ts", "node_modules", "zombie-survival-camp-web"]
+  "exclude": ["vite.config.ts", "node_modules", "zombie-survival-camp-web"],
+  "ts-node": {
+    "esm": true,
+    "experimentalEsm": true,
+    "compilerOptions": {
+      "module": "NodeNext"
+    }
+  }
 }
