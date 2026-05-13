@@ -2,9 +2,10 @@
   "name": "zombie-survival-camp-api",
   "version": "1.0.0",
   "description": "Backend REST API for Zombie Survival Camp - Managing survivors, squads, weapons, courses and exercises in a post-apocalyptic training facility.",
+  "type": "module",
   "main": "dist/src/server.js",
   "scripts": {
-    "dev": "ts-node src/server.ts",
+    "dev": "ts-node --esm src/server.ts",
     "build": "tsc",
     "start": "node dist/src/server.js",
     "clean": "rm -rf dist"

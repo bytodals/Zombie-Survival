@@ -1,5 +1,5 @@
 import { Router, RequestHandler } from "express";
-import * as controller from "../controllers/weaponController";
+import * as controller from "../controllers/weaponController.js";
 
 const router = Router();
 

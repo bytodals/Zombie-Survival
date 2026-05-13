@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { sendSuccess } from "../utils/responseHandler";
-import { getSimulatorOverview } from "../services/simulatorService";
+import { sendSuccess } from "../utils/responseHandler.js";
+import { getSimulatorOverview } from "../services/simulatorService.js";
 
 export const getOverview = async (
   _req: Request,

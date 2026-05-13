@@ -1,14 +1,13 @@
 import express from "express";
 import cors from "cors";
 
-import participantRouter from "./routes/participant";
-import zombieBehaviorRouter from "./routes/zombieBehavior";
-import courseRouter from "./routes/course";
-import weaponRouter from "./routes/weapon";
-import simulatorRouter from "./routes/simulator";
-import { getOverview as getSimulatorOverview } from "./controllers/simulatorController";
-import { notFoundMiddleware } from "./middleware/notFoundMiddleware";
-import { errorMiddleware } from "./middleware/errorMiddleware";
+import participantRouter from "./routes/participant.js";
+import zombieBehaviorRouter from "./routes/zombieBehavior.js";
+import courseRouter from "./routes/course.js";
+import weaponRouter from "./routes/weapon.js";
+import simulatorRouter from "./routes/simulator.js";
+import { notFoundMiddleware } from "./middleware/notFoundMiddleware.js";
+import { errorMiddleware } from "./middleware/errorMiddleware.js";
 
 const app = express();
 
@@ -19,6 +18,13 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
+app.get("/health", (_req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Server is healthy"
+  });
+});
 
 
 app.use("/participant", participantRouter);

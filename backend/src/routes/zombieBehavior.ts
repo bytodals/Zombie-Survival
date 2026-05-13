@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as controller from "../controllers/zombieBehaviorController";
+import * as controller from "../controllers/zombieBehaviorController.js";
 
 const router = Router();
 

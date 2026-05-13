@@ -1,4 +1,4 @@
-import pool, { dbAvailable } from "../config/database";
+import pool, { dbAvailable } from "../config/database.js";
 import type {
   Course,
   CourseBehaviorLink,
@@ -11,7 +11,7 @@ import type {
   Weapon,
   WeaponZombieBehaviorLink,
   ZombieBehavior
-} from "../../shared/types/api";
+} from "../../shared/types/api.js";
 
 const emptyOverview = (): SimulatorOverview => ({
   participants: [],

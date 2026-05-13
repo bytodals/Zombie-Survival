@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import * as service from "../services/zombieBehaviorService";
-import { sendSuccess } from "../utils/responseHandler";
+import * as service from "../services/zombieBehaviorService.js";
+import { sendSuccess } from "../utils/responseHandler.js";
 
 export const getAll = async (
   _req: Request,

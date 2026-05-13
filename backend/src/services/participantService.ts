@@ -1,4 +1,4 @@
-import pool, { dbAvailable } from "../config/database";
+import pool, { dbAvailable } from "../config/database.js";
 
 export const getAllParticipants = async () => {
   if (!dbAvailable) return [];

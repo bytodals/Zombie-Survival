@@ -34,6 +34,13 @@ DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=your_password
 DB_DATABASE=zombie_survival_camp
+```
+
+### Frontend
+
+Create `frontend/.env` with the API base URL:
+
+```env
 VITE_API_BASE_URL=http://localhost:3000/
 ```
 
@@ -48,7 +55,7 @@ mysql -h localhost -u root -p zombie_survival_camp < backend/schema/seeds.sql
 
 The seeds use `INSERT IGNORE` so they are safe to run multiple times.
 
-### Frontend
+### Frontend app
 
 ```bash
 cd frontend
