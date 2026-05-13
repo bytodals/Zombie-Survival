@@ -35,3 +35,16 @@ export const getById = async (
     next(err);
   }
 };
+
+export const getParticipantCourses = async (
+  req: Request<{ id: string }>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const data = await service.getParticipantCourses(req.params.id);
+    sendSuccess(res, data);
+  } catch (err) {
+    next(err);
+  }
+};
