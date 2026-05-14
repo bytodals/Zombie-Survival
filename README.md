@@ -1,6 +1,6 @@
 # Zombie Survival Camp
 
-Zombie Survival Camp is a full-stack TypeScript app for managing survivors, training courses, weapons, and zombie threat intelligence.
+Zombie Survival Camp is a full-stack TypeScript app for exploring survivors, training courses, weapons, zombie threat intelligence, and simulator relationships.
 
 ## Project layout
 
@@ -11,7 +11,7 @@ Zombie Survival Camp is a full-stack TypeScript app for managing survivors, trai
 ## What it does
 
 - REST JSON API for participants, courses, weapons, and zombie behaviors
-- Dashboard UI with reusable cards, tables, badges, and stats
+- Dashboard UI with reusable cards, tables, badges, stats, and an overview simulator page
 - Graceful fallback when the database is unavailable, so the UI still loads without crashing
 - Centralized backend error handling and health check endpoint
 
@@ -66,11 +66,18 @@ npm run dev
 The frontend reads `VITE_API_BASE_URL` and calls these endpoints:
 
 - `GET /participant`
+- `GET /participant/:id`
+- `GET /participant/:id/courses`
 - `GET /course`
 - `GET /weapon`
+- `GET /weapon/:id`
 - `GET /zombie-behavior`
+- `GET /simulator/overview`
+
+The frontend is currently read-only: it displays and filters data, but it does not create, update, or delete records.
 
 ## Notes
 
 - The backend currently falls back to empty responses if MySQL credentials are placeholders or the database is unavailable.
-- Shared API types live in `backend/shared/types/api.ts` and are imported from both apps.
+- Shared API types live in `backend/shared/types/api.ts` and are imported from the frontend API client.
+- The app uses Tailwind CSS v4 in the frontend.

@@ -6,7 +6,6 @@ import CoursesPage from "./pages/CoursesPage";
 import WeaponsPage from "./pages/WeaponsPage";
 import ZombieBehaviorsPage from "./pages/ZombieBehaviorsPage";
 import SimulatorPage from "./pages/SimulatorPage";
-import "./App.css";
 
 export default function App() {
   return (

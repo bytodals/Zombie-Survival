@@ -2,11 +2,11 @@
 
 ## Knowledge Domain
 
-**Zombie Survival Camp** is a simulated post-apocalyptic training camp where survivors register to learn essential skills to survive in a zombie-infested world. The system manages participant registration, weapon distribution, courses, and documentation of zombie behaviors to improve training effectiveness.
+**Zombie Survival Camp** is a simulated post-apocalyptic training camp where survivors register to learn essential skills to survive in a zombie-infested world. The current application focuses on read-only exploration of participants, courses, weapons, zombie behaviors, and simulator relationship data.
 
 ## Database Design
 
-The database contains four core interconnected entities:
+The application uses four core interconnected entities:
 
 - **Participants**
 - **Courses**
@@ -17,37 +17,35 @@ These entities are strongly connected through relationships (including junction 
 
 ### Main Entities and Attributes
 
-**Participants** (contains date + numeric attribute)
+**Participants**
 
 - participant_id (PK)
-- first_name, last_name
+- name
 - join_date (DATE)
-- survival_skill_level (INT 1-100)
-- status
+- age
+- skill_level
 
-**Courses** (contains start and end dates)
+**Courses**
 
 - course_id (PK)
-- course_name
+- name
 - start_date (DATE)
 - end_date (DATE)
-- difficulty_level
+- description
 
 ## Weapons
 
 - weapon_id (PK)
 - name
-- type (Melee, Firearm, Explosive, etc.)
 - damage (INT)
-- quantity_in_stock (INT)
-- value (DECIMAL)
+- quantity (INT)
+- description
 
 ## Zombie Behaviors
 
 - behavior_id (PK)
-- behavior_type
-- threat_level (INT)
-- speed
+- name
+- danger_level (INT)
 - description
 
 ### Relationships
@@ -77,26 +75,30 @@ Junction tables are used for all many-to-many relationships to avoid redundancy.
 - **Architecture**: Fullstack layered architecture
   - Backend: Routes → Controllers → Services → Database
   - Frontend: Pages → API Client → Backend REST API
-- **Shared Code**: API types live in `backend/shared/types/api.ts` and are reused by both apps
+- **Shared Code**: API types live in `backend/shared/types/api.ts` and are reused by the frontend API client
 - **Extra features**: Graceful shutdown, centralized error handling, health check endpoint, and graceful empty-state fallback when the database is unavailable
+- **Frontend UI**: Tailwind CSS v4 with custom theme tokens defined in `frontend/src/index.css`
+- **Current UI Mode**: Read-only dashboard and entity views; no create/edit/delete workflows are wired up
 
 ## Frontend Design
 
-The project now includes a dedicated frontend (`frontend/`) that presents and manages all core entities through a user-friendly interface.
+The project now includes a dedicated frontend (`frontend/`) that presents and explores all core entities through a user-friendly interface.
 
 ### Frontend Pages
 
+- **DashboardPage**: Shows summary cards, recent survivors, threat assessment, training programs, and arsenal inventory.
 - **CoursesPage**: Displays and manages courses with dates and difficulty.
 - **ParticipantsPage**: Displays and manages participants, including status and skill level.
 - **WeaponsPage**: Displays and manages weapon inventory and weapon details.
 - **ZombieBehaviorsPage**: Displays and manages zombie behavior data and threat information.
+- **SimulatorPage**: Displays the full overview and many-to-many relationship tables.
 
 ### Frontend Goals
 
 - Provide a clear visual overview of all entities in the system.
-- Make CRUD operations easier and more intuitive than manual API usage.
 - Separate UI logic from API logic using dedicated client modules in `src/api/`.
 - Reuse shared TypeScript types (`backend/shared/types/api.ts`) for consistency between backend and frontend.
+- Keep the interface optimized for readability and contrast on a dark theme.
 
 ## API and Frontend Integration
 
@@ -106,6 +108,7 @@ The frontend communicates with the backend through REST endpoints, with separate
 - `participants.ts`
 - `weapons.ts`
 - `zombieBehaviors.ts`
+- `simulator.ts`
 
 ## API Endpoints
 
@@ -114,9 +117,11 @@ The current backend routes are:
 - `GET /health`
 - `GET /participant`
 - `GET /participant/:id`
+- `GET /participant/:id/courses`
 - `GET /course`
 - `GET /weapon`
 - `GET /weapon/:id`
 - `GET /zombie-behavior`
+- `GET /simulator/overview`
 
 This structure improves maintainability and makes it easier to extend the system with additional pages and features.

@@ -1,118 +1,44 @@
 @import "tailwindcss";
 
-/* stylelint-disable at-rule-no-unknown */
-
-:root {
-  /* Base colors */
-  --background: hsl(15 19% 9%);
-  --foreground: hsl(210 20% 90%);
-
-  --card: hsl(210 17% 9%);
-  --card-foreground: hsl(210 20% 90%);
-
-  --popover: hsl(210 17% 9%);
-  --popover-foreground: hsl(210 20% 90%);
-
-  --primary: hsl(106 54% 59%);
-  --primary-foreground: hsl(0 0% 100%);
-
-  --secondary: hsl(214 18% 12%);
-  --secondary-foreground: hsl(210 20% 90%);
-
-  --muted: hsl(214 18% 12%);
-  --muted-foreground: hsl(210 5% 55%);
-
-  --accent: hsl(40 100% 50%);
-  --accent-foreground: hsl(0 0% 100%);
-
-  --destructive: hsl(357 89% 19%);
-  --destructive-foreground: hsl(0 0% 100%);
-
-  --border: hsl(205 17% 14%);
-  --input: hsl(205 17% 14%);
-  --ring: hsl(106 54% 59%);
-
-  /* Custom semantic colors */
-  --zombie-green: hsl(106 54% 59%);
-  --danger-red: hsl(357 89% 19%);
-  --warning-amber: hsl(40 100% 50%);
-  --safe-teal: hsl(174 35% 48%);
-
-  /* Hex fallbacks */
-  --background-hex: #161111;
-  --foreground-hex: #e6eef6;
-
-  --card-hex: #11161a;
-  --card-foreground-hex: #e6eef6;
-
-  --popover-hex: #11161a;
-  --popover-foreground-hex: #e6eef6;
-
-  --primary-hex: #85cb6d;
-  --primary-foreground-hex: #ffffff;
-
-  --secondary-hex: #131820;
-  --secondary-foreground-hex: #e6eef6;
-
-  --muted-hex: #131820;
-  --muted-foreground-hex: #8c8f8f;
-
-  --accent-hex: #ffb300;
-  --accent-foreground-hex: #ffffff;
-
-  --destructive-hex: #631113;
-  --destructive-foreground-hex: #ffffff;
-
-  --border-hex: #212a30;
-  --input-hex: #212a30;
-  --ring-hex: #85cb6d;
-
-  --zombie-green-hex: #85cb6d;
-  --danger-red-hex: #631113;
-  --warning-amber-hex: #ffb300;
-  --safe-teal-hex: #4f9e97;
+@theme {
+  --color-background: #181818;
+  --color-foreground: #e5e5e5;
+  --color-card: #0b0b0b;
+  --color-card-foreground: #e5e5e5;
+  --color-popover: #0b0b0b;
+  --color-popover-foreground: #e5e5e5;
+  --color-primary: #d7b11f;
+  --color-primary-foreground: #ECECEC;
+  --color-secondary: #121212;
+  --color-secondary-foreground: #e5e5e5;
+  --color-muted: #161616;
+  --color-muted-foreground: #C4C4C4;
+  --color-accent: #f0c533;
+  --color-accent-foreground: #F1F1F1;
+  --color-destructive: #5a1114;
+  --color-destructive-foreground: #F3F3F3;
+  --color-border: #232323;
+  --color-input: #232323;
+  --color-ring: #d7b11f;
+  --color-zombie-green: #d7b11f;
+  --color-danger-red: #5a1114;
+  --color-warning-amber: #f0c533;
+  --color-safe-teal: #9B9B9B;
 }
 
-/* stylelint-enable at-rule-no-unknown */
-
 * {
-  border-color: var(--border);
   box-sizing: border-box;
 }
 
 html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
-}
-
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif;
-}
-
-/* Scrollbars */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--secondary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--muted-foreground);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--foreground);
+  background: var(--color-background);
+  color: var(--color-foreground);
 }
