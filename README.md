@@ -2,6 +2,9 @@
 
 Zombie Survival Camp is a full-stack TypeScript app for exploring survivors, training courses, weapons, zombie threat intelligence, and simulator relationships.
 
+<img width="1896" height="906" alt="image" src="https://github.com/user-attachments/assets/5fa56561-fb11-43cb-b598-3a2506e888f1" />
+
+
 ## Project layout
 
 - `frontend/` — React + Vite UI
