@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BookOpen, Plus, Calendar, Clock, Search, Filter } from "lucide-react";
+import { BookOpen, Plus, Calendar, Clock, Filter } from "lucide-react";
 import { getCourses } from "../api/courses";
 import { Card, CardHeader, CardContent } from "../components/ui/Card";
 import { Badge } from "../components/ui/Badge";
@@ -10,7 +10,7 @@ export default function CoursesPage() {
   const [rows, setRows] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  
 
   useEffect(() => {
     getCourses()
@@ -19,7 +19,7 @@ export default function CoursesPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  const filteredRows = rows.filter((c) => c.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredRows = rows;
   const now = new Date();
   const activeCourses = rows.filter((c) => new Date(c.start_date) <= now && new Date(c.end_date) >= now).length;
   const upcomingCourses = rows.filter((c) => new Date(c.start_date) > now).length;
@@ -81,17 +81,7 @@ export default function CoursesPage() {
         <StatCard title="Completed" value={rows.length - activeCourses - upcomingCourses} subtitle="Finished" icon={Clock} color="destructive" />
       </div>
 
-      <div className="flex items-center gap-3">
-        <div className="flex flex-1 items-center gap-2 rounded-lg border border-border bg-card px-3 py-2">
-          <Search className="h-4 w-4 text-muted-foreground" />
-          <input
-            type="text"
-            placeholder="Search courses..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
-          />
-        </div>
+      <div className="flex items-center justify-end">
         <button className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
           <Filter className="h-4 w-4" />
           Filter
@@ -134,7 +124,7 @@ export default function CoursesPage() {
 
       {filteredRows.length === 0 && (
         <div className="flex h-48 items-center justify-center rounded-xl border border-border bg-card">
-          <p className="text-muted-foreground">No courses found matching your search</p>
+          <p className="text-muted-foreground">No courses available</p>
         </div>
       )}
     </div>

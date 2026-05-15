@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Users, UserPlus, Search, Filter } from "lucide-react";
+import { Users, UserPlus, Filter } from "lucide-react";
 import { getParticipants } from "../api/participants";
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/Card";
 import { DataTable } from "../components/ui/DataTable";
@@ -12,7 +12,7 @@ export default function ParticipantsPage() {
   const [rows, setRows] = useState<Participant[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  
 
   useEffect(() => {
     getParticipants()
@@ -21,7 +21,7 @@ export default function ParticipantsPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  const filteredRows = rows.filter((p) => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredRows = rows;
   const avgSkill = rows.length ? Math.round((rows.reduce((sum, p) => sum + p.skill_level, 0) / rows.length) * 10) / 10 : 0;
   const eliteSurvivors = rows.filter((p) => p.skill_level >= 8).length;
   const newRecruits = rows.filter((p) => p.skill_level <= 3).length;
@@ -141,16 +141,6 @@ export default function ParticipantsPage() {
             <p className="text-sm text-muted-foreground">{filteredRows.length} registered</p>
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 rounded-lg border border-border bg-secondary px-3 py-2">
-              <Search className="h-4 w-4 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder="Search survivors..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-48 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
-              />
-            </div>
             <button className="flex items-center gap-2 rounded-lg border border-border bg-secondary px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
               <Filter className="h-4 w-4" />
               Filter

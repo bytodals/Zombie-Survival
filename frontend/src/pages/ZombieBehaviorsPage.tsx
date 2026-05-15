@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Skull, Plus, Search, Filter, AlertTriangle, Activity, Eye } from "lucide-react";
+import { Skull, Plus, Filter, AlertTriangle, Activity, Eye } from "lucide-react";
 import { getZombieBehaviors } from "../api/zombieBehaviors";
 import { Card, CardHeader, CardContent } from "../components/ui/Card";
 import { Badge } from "../components/ui/Badge";
@@ -11,7 +11,7 @@ export default function ZombieBehaviorsPage() {
   const [rows, setRows] = useState<ZombieBehavior[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  
 
   useEffect(() => {
     getZombieBehaviors()
@@ -20,7 +20,7 @@ export default function ZombieBehaviorsPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  const filteredRows = rows.filter((z) => z.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredRows = rows;
   const criticalThreats = rows.filter((z) => z.danger_level >= 8).length;
   const highThreats = rows.filter((z) => z.danger_level >= 5 && z.danger_level < 8).length;
   const avgDanger = rows.length ? Math.round((rows.reduce((sum, z) => sum + z.danger_level, 0) / rows.length) * 10) / 10 : 0;
@@ -82,17 +82,7 @@ export default function ZombieBehaviorsPage() {
         <StatCard title="Avg Danger Level" value={avgDanger} subtitle="Out of 10" icon={Eye} color="teal" />
       </div>
 
-      <div className="flex items-center gap-3">
-        <div className="flex flex-1 items-center gap-2 rounded-lg border border-border bg-card px-3 py-2">
-          <Search className="h-4 w-4 text-muted-foreground" />
-          <input
-            type="text"
-            placeholder="Search zombie behaviors..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
-          />
-        </div>
+      <div className="flex items-center justify-end">
         <button className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
           <Filter className="h-4 w-4" />
           Filter
@@ -151,7 +141,7 @@ export default function ZombieBehaviorsPage() {
 
       {filteredRows.length === 0 && (
         <div className="flex h-48 items-center justify-center rounded-xl border border-border bg-card">
-          <p className="text-muted-foreground">No threats found matching your search</p>
+          <p className="text-muted-foreground">No behaviors available</p>
         </div>
       )}
     </div>

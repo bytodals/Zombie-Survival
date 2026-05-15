@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Sword, Plus, Search, Filter, Shield, Zap, Package } from "lucide-react";
+import { Sword, Plus, Filter, Shield, Zap, Package } from "lucide-react";
 import { getWeapons } from "../api/weapons";
 import { Card, CardHeader, CardContent } from "../components/ui/Card";
 import { Badge } from "../components/ui/Badge";
@@ -11,7 +11,7 @@ export default function WeaponsPage() {
   const [rows, setRows] = useState<Weapon[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  
 
   useEffect(() => {
     getWeapons()
@@ -20,7 +20,7 @@ export default function WeaponsPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  const filteredRows = rows.filter((w) => w.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredRows = rows;
   const totalQuantity = rows.reduce((sum, w) => sum + w.quantity, 0);
   const avgDamage = rows.length ? Math.round(rows.reduce((sum, w) => sum + w.damage, 0) / rows.length) : 0;
   const lowStock = rows.filter((w) => w.quantity < 10).length;
@@ -73,17 +73,7 @@ export default function WeaponsPage() {
         <StatCard title="Low Stock" value={lowStock} subtitle="Need resupply" icon={Shield} color="destructive" />
       </div>
 
-      <div className="flex items-center gap-3">
-        <div className="flex flex-1 items-center gap-2 rounded-lg border border-border bg-card px-3 py-2">
-          <Search className="h-4 w-4 text-muted-foreground" />
-          <input
-            type="text"
-            placeholder="Search weapons..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
-          />
-        </div>
+      <div className="flex items-center justify-end">
         <button className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
           <Filter className="h-4 w-4" />
           Filter
@@ -137,7 +127,7 @@ export default function WeaponsPage() {
 
       {filteredRows.length === 0 && (
         <div className="flex h-48 items-center justify-center rounded-xl border border-border bg-card">
-          <p className="text-muted-foreground">No weapons found matching your search</p>
+          <p className="text-muted-foreground">No weapons available</p>
         </div>
       )}
     </div>
